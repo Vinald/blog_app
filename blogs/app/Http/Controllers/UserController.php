@@ -32,18 +32,17 @@ class UserController extends Controller
             'loginPassword' => ['required'],
         ]);
 
-        $user = User::where('email', $incomingFields['loginEmail'])->first();
-        if (!$user || !password_verify($incomingFields['loginPassword'], $user->password)) {
-            return redirect('/login');
+        if (auth()->attempt(['email' => $incomingFields['loginEmail'], 'password' => $incomingFields['loginPassword']])) {
+            $request->session()->regenerate();
         }
 
-        $request->session()->put('user', $user);
         return redirect('/home');
+
     }
 
     public function logout(Request $request): string
     {
-        $request->session()->forget('user');
-        return redirect('/login');
+        auth()->logout();
+        return redirect('/');
     }
 }
