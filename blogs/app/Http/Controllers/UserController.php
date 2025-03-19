@@ -8,8 +8,6 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-
-
     public function register(Request $request): string
     {
         $incomingFields = $request->validate([

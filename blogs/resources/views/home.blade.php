@@ -7,7 +7,30 @@
 <body>
 
     @auth
+        <form action="/welcome" method="GET">
+            @csrf
+            <button type="submit">Welcome Page</button>
+        </form>
         <h1>Welcome {{ auth()->user()->name }}</h1>
+        <h2>Create a New Post</h2>
+        <form action="/create-post" method="POST">
+            @csrf
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" placeholder="Title">
+            <label for="body">Content</label>
+            <textarea name="body" id="body" placeholder="body"></textarea>
+            <br>
+            <button type="submit">Create Post</button>
+        </form>
+        <div>
+            <h2>All posts</h2>
+            @foreach($posts as $post)
+                <div>
+                    <h3>{{$post['title']}}</h3>
+                    <p>{{$post['body2']}}</p>
+                </div>
+            @endforeach
+        </div>
         <br>
         <form action="/logout" method="POST">
             @csrf

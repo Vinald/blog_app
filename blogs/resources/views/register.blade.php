@@ -6,6 +6,11 @@
 </head>
 <body>
     <div style="text-align: center ; margin-top: 200px; border: 1px solid #ccc; padding: 20px; text-size: 20px;">
+        <form action="/welcome" method="GET">
+            @csrf
+            <button type="submit">Welcome Page</button>
+        </form>
+
         <h2>Register</h2>
         <form action="/register" method="POST">
             @csrf
@@ -18,6 +23,11 @@
             <br>
             <br>
              <button type="submit">Register</button>
+        </form>
+        <h2>OR</h2>
+        <form action="/login" method="GET">
+            @csrf
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>
